@@ -1,16 +1,16 @@
-var x=300;
-var y=300;
-var a=100;
-var b=100;
+let x=300;
+let y=300;
+let a=100;
+let b=100;
 //Flower
-var flowerW = 55;
-var flowerH = 55;
-var elli_size = 40;
-var lineWeight = 4;
-var flowerX = 75;
-var flowerY = 20;
+let flowerW = 55;
+let flowerH = 55;
+let elli_size = 40;
+let lineWeight = 4;
+let flowerX = 75;
+let flowerY = 20;
 
-function draw_one_frame() {
+function draw_one_frame(cur_frac) {
 	//background(255);
     x+=2;
     y+=2;
@@ -19,8 +19,8 @@ function draw_one_frame() {
 
 translate(width/2, height/2);
 
-	for(var i=0;i<15;i++){
-		for(var k=0;k<20;k++){
+	for(let i=0;i<15;i++){
+		for(let k=0;k<20;k++){
 			rotate(PI / 12.0)
 	ellipse((x+i*20)%width,(y+k*20)%height,i+4,i+4)
 	push()
@@ -37,7 +37,7 @@ translate(width/2, height/2);
 	  //// actual flower ///////
 		  // flowerPetals
 		  fill(255, 145, 138); //colour red
-		  stroke(255, 107, 18); //colour darker red
+		  stroke(255, (k*0.4)%107, 18); //colour darker red
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
 		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
@@ -72,8 +72,8 @@ translate(width/2, height/2);
 // 	b-=2;
 // 	strokeWeight(1);
 //   translate(width/2, height/2);
-//   for(var i=0;i<15;i++){
-// 	  for(var k=0;k<20;k++){
+//   for(let i=0;i<15;i++){
+// 	  for(let k=0;k<20;k++){
 // 		stroke(255,255,255);
 //     rotate(PI / 12.0);
 // 	  fill(255,255-i*10,255-k*10);
