@@ -1,68 +1,54 @@
 function draw_one_frame(cur_frac) {
-  let sun_size = height/8;
-  //Flower
-  let flowerW = 55;
-  let flowerH = 55;
-  let elli_size = 40;
-  let lineWeight = 4;
-  let flowerX = 75;
-  let flowerY = 20;
+  
 
   noStroke();
   // sky
   fill(100, 100, 214);
   rect(0, 0, width, height);
 
-  // sun
-  fill(255, 255, 0);
-  drawflower(0.25 * width, 0.10 * height, sun_size);
-
-  // grass
-  fill(0, 200, 0);
-  rect(0, height/2, width, height/2);
-
-  stroke(0);
-  fill(100, 100, 100);
-
-  let b1_y = 0.55 * height;
-  let b2_y = 0.65 * height;
-
-  let b1_size = height/12;
-  let b2_size = height/6;
+  let flower1_Y = 1* height;
+  let flower1_Size = height/7;
 
   let grid_points1 = [
-   -0.25 * width,
-    0.0 * width,
+    -0.5 * height, 
     0.25 * width,
     0.50 * width,
-    0.75 * width,
-    1.00 * width
+    1 * width,
+    1.25 * width,
+    1.50 * width
   ]
 
-  if (debugView) {
-    stroke(255, 0, 0);
-    strokeWeight(height/100);
-    noFill();
-    for(let i=0; i<grid_points1.length; i++) {
-      rect(grid_points1[i], b1_y, b1_size, 2*b1_size);
-    }    
+  // if (debugView) {
+  //   stroke(255, 0, 0);
+  //   strokeWeight(height/100);
+  //   noFill();
+  //   for(let i=0; i<grid_points1.length; i++) {
+  //     rect(grid_points1[i], b1_y, b1_size, 2*b1_size);
+  //   }    
+  // } 
+
+ //translate(height/3.5, width/10)
+ //rotate(95)
+  for(let i=0; i<grid_points1.length; i++) {
+    let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
+    
+    drawflower(cur_x_pos, flower1_Y, flower1_Y, flower1_Size)
   }
 
-  //fill(100, 100, 100);
-  noStroke();
-  for(let i=0; i<grid_points1.length-1; i++) {
-    let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1])
-    rect(cur_x_pos, b1_y, 5*b1_size, b1_size/5);
-    //ellipse(cur_x_pos, b1_y, b1_size, 2*b1_size);
-  }
+  function drawflower(height, width, size ) {
 
-  function drawflower(i,k) {
-
-
+    let flowerW = 55;
+    let flowerH = 55; 
+    let elli_size = size/14;
+    let lineWeight = 4;
+    let flowerX = 0.5*width;
+    let flowerY = 0.5* height;
+  
+push()
 	  //// actual flower ///////
 		  // flowerPetals
 		  fill(255, 145, 138); //colour red
-		  stroke(255, (k*0.4)%107, 18); //colour darker red
+		  stroke(255, 107, 18); //colour darker red
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
 		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
@@ -84,7 +70,7 @@ function draw_one_frame(cur_frac) {
 		  fill(249, 255, 87); //colour yellow
 		  stroke(255, 204, 0); //colour darker yellow
 		  ellipse(flowerX, flowerY + 55, elli_size); //middle
-		
+		pop()
 	  
 	  }
 
