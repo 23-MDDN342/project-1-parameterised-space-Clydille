@@ -3,8 +3,13 @@ function draw_one_frame(cur_frac) {
 
   noStroke();
   /// bg ///
-  fill(55, 13, 110);
+  fill(56, 17, 51); //color for now
   rect(0, 0, width, height);
+
+/// Vines /// playaround
+ drawleaf()
+ noStroke()
+ rect(30, 0, 10, height) //stick
 
   let flower1_Y = 0.55* height;
   let flower1_Size = height;
@@ -19,14 +24,6 @@ let grid_points1 = [
   1.50 * width,
   2.50 * width
 ]
-  // let grid_points1 = [
-  //   -0.5 * height, 
-  //   0.25 * width,
-  //   0.50 * width,
-  //   1 * width,
-  //   1.25 * width,
-  //   1.50 * width
-  // ]
 
   if (debugView) {
     stroke(255, 0, 0);
@@ -68,6 +65,15 @@ let grid_points1 = [
     pop()
   }
 
+///Drawing leaf ////
+function drawleaf(height, width, size){
+  fill(103, 166, 88) ///light green
+stroke(166, 232, 151)
+strokeWeight(3)
+rect(32, 25, 55, 55, 22); ///leaf
+noStroke()
+}
+
 /// Drawing flower ////
   function drawflower(height, width, size) {
 
@@ -77,6 +83,7 @@ let grid_points1 = [
     let lineWeight = 4;
     let flowerX = 0.55*width;
     let flowerY = 0.55*height;
+  
   
     push()
 	  //// actual flower ///////
