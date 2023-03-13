@@ -11,14 +11,22 @@ function draw_one_frame(cur_frac) {
 
 
 /// Flowers going down ////
-  let grid_points1 = [
-    -0.5 * height, 
-    0.25 * width,
-    0.50 * width,
-    1 * width,
-    1.25 * width,
-    1.50 * width
-  ]
+let grid_points1 = [
+  -0.50 * height, 
+  0.25 * width,
+  0.50 * width,
+  1 * width,
+  1.50 * width,
+  2.50 * width
+]
+  // let grid_points1 = [
+  //   -0.5 * height, 
+  //   0.25 * width,
+  //   0.50 * width,
+  //   1 * width,
+  //   1.25 * width,
+  //   1.50 * width
+  // ]
 
   if (debugView) {
     stroke(255, 0, 0);
@@ -42,12 +50,12 @@ function draw_one_frame(cur_frac) {
 
   /// Flowers going up ////
   let grid_points2 = [
-    1.50* width, 
-    1.25 * width,
+    2.50* width, 
+    1.50 * width,
     1 * width,
     0.50 * width,
-    0.25 * width,
-    -0.5 * height
+    0.25 * width, 
+    -0.50 * height
   ]
   
   for(let i=0; i<grid_points2.length; i++) {
@@ -65,7 +73,7 @@ function draw_one_frame(cur_frac) {
 
     let flowerW = 55;
     let flowerH = 55; 
-    let elli_size = size/14;
+    let elli_size = 35;
     let lineWeight = 4;
     let flowerX = 0.55*width;
     let flowerY = 0.55*height;
