@@ -86,7 +86,7 @@ let grid_points1 = [
     }
 
 ///Drawing leaf ////
-function drawleaf(height, width, size){
+function drawleaf(height, width){
 
   let leafX = width/29.5
   let leafY = height/21
@@ -99,7 +99,7 @@ noStroke()
 }
 
 /// Drawing flower ////
-  function drawflower(height, width, size) {
+  function drawflower(height, width) {
 
     let flowerW = 55;
     let flowerH = 55; 
