@@ -70,11 +70,10 @@ let grid_points1 = [
 
     /// leafs going up ////
     let grid_points3= [
-      2* width, 
+      2.5* width, 
       1.50 * width,
       0.50 * width,
-      0.25 * width, 
-      -0.50 * height
+      -1 * height
     ]
  
     for(let i=0; i<grid_points3.length; i++) {
@@ -95,7 +94,7 @@ function drawleaf(height, width, size){
 fill(103, 166, 88) ///light green
 stroke(166, 232, 151)
 strokeWeight(3)
-rect(leafX, leafY, 55, 55, 22); ///leaf
+rect(leafX, leafY, 45, 50, 22); ///leaf
 noStroke()
 }
 
