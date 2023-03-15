@@ -6,13 +6,12 @@ function draw_one_frame(cur_frac) {
   fill(56, 17, 51); //color for now
   rect(0, 0, width, height);
 
-/// Vines /// playaround
- drawleaf()
- noStroke()
- rect(30, 0, 10, height) //stick
+
 
   let flower1_Y = 0.55* height;
   let flower1_Size = height;
+  let leafX = width/29.5
+  let leafY = height/21
 
 
 /// Flowers going down ////
@@ -37,6 +36,8 @@ let grid_points1 = [
   for(let i=0; i<grid_points1.length; i++) {
     let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
     push()
+
+    //Flowers
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size)///first flower
     translate(height/1.8, 0)
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
@@ -44,6 +45,7 @@ let grid_points1 = [
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
     pop()
   }
+
 
   /// Flowers going up ////
   let grid_points2 = [
@@ -57,6 +59,7 @@ let grid_points1 = [
   
   for(let i=0; i<grid_points2.length; i++) {
     let cur_x_pos = map(cur_frac, 0, 1, grid_points2[i], grid_points2[i+1]) 
+  
     push()
     translate(height/3.5, width/10)
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
@@ -65,12 +68,34 @@ let grid_points1 = [
     pop()
   }
 
+    /// leafs going up ////
+    let grid_points3= [
+      2* width, 
+      1.50 * width,
+      0.50 * width,
+      0.25 * width, 
+      -0.50 * height
+    ]
+ 
+    for(let i=0; i<grid_points3.length; i++) {
+      let cur_x_pos = map(cur_frac, 0, 1, grid_points3[i], grid_points3[i+1]) 
+  
+     /// Vines /// playaround
+      drawleaf(cur_x_pos*5, leafY, flower1_Size/50, flower1_Size/50)
+      noStroke()
+      rect(30, 0, 10, height) //stick
+    }
+
 ///Drawing leaf ////
 function drawleaf(height, width, size){
-  fill(103, 166, 88) ///light green
+
+  let leafX = width/29.5
+  let leafY = height/21
+
+fill(103, 166, 88) ///light green
 stroke(166, 232, 151)
 strokeWeight(3)
-rect(32, 25, 55, 55, 22); ///leaf
+rect(leafX, leafY, 55, 55, 22); ///leaf
 noStroke()
 }
 
