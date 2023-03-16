@@ -79,10 +79,14 @@ let grid_points1 = [
     for(let i=0; i<grid_points3.length; i++) {
       let cur_x_pos = map(cur_frac, 0, 1, grid_points3[i], grid_points3[i+1]) 
   
-     /// Vines /// playaround
-      drawleaf(cur_x_pos*5, leafY, flower1_Size/50, flower1_Size/50)
-      noStroke()
-      rect(30, 0, 10, height) //stick
+     /// Vines ///
+     noStroke()
+      rect(35, 0, 10, height) //stick
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60)
+       
+       translate(0, 0)
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60)
+
     }
 
 ///Drawing leaf ////
@@ -91,10 +95,10 @@ function drawleaf(height, width){
   let leafX = width/29.5
   let leafY = height/21
 
-fill(103, 166, 88) ///light green
-stroke(166, 232, 151)
+fill(103, 166, 88) /// green
+//stroke(166, 232, 151) ///light green
 strokeWeight(3)
-rect(leafX, leafY, 45, 50, 22); ///leaf
+rect(leafX, leafY, 35, 35, 20); ///leaf
 noStroke()
 }
 
