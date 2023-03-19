@@ -1,18 +1,16 @@
 function draw_one_frame(cur_frac) {
   
-
   noStroke();
   /// bg ///
   fill(56, 17, 51); //color for now
   rect(0, 0, width, height);
 
-
+////// FLOWERS //////
 
   let flower1_Y = 0.55* height;
   let flower1_Size = height;
   let leafX = width/29.5
   let leafY = height/21
-
 
 /// Flowers going down ////
 let grid_points1 = [
@@ -23,7 +21,7 @@ let grid_points1 = [
   1.50 * width,
   2.50 * width
 ]
-
+ ////Debug going down///
   if (debugView) {
     stroke(255, 0, 0);
     strokeWeight(height/100);
@@ -33,6 +31,7 @@ let grid_points1 = [
     }   
   } 
 
+  ///flowers going down////
   for(let i=0; i<grid_points1.length; i++) {
     let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
     push()
@@ -56,7 +55,8 @@ let grid_points1 = [
     0.25 * width, 
     -0.50 * height
   ]
-  
+
+  /// Flowers going up ////
   for(let i=0; i<grid_points2.length; i++) {
     let cur_x_pos = map(cur_frac, 0, 1, grid_points2[i], grid_points2[i+1]) 
   
@@ -67,6 +67,7 @@ let grid_points1 = [
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
     pop()
   }
+    ////// VINES AND LEAF //////
 
     /// leafs going up ////
     let grid_points3= [
@@ -75,19 +76,43 @@ let grid_points1 = [
       0.50 * width,
       -1 * height
     ]
- 
+
     for(let i=0; i<grid_points3.length; i++) {
       let cur_x_pos = map(cur_frac, 0, 1, grid_points3[i], grid_points3[i+1]) 
-  
-     /// Vines ///
-     noStroke()
-      rect(35, 0, 10, height) //stick
-       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60)
-       
-       translate(0, 0)
-       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60)
+    
+       rect(35, 0, 10, height) //stick
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
 
+       push()
+       translate(40, 125)
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) //right leaf
+       pop()
+     
     }
+
+        /// leafs going down ////
+        let grid_points4= [
+          -1* height, 
+          0.50 * width,
+          1.50 * width,
+          2.5* width
+        ]
+        
+    for(let i=0; i<grid_points4.length; i++) {
+      let cur_x_pos = map(cur_frac, 0, 1, grid_points4[i], grid_points4[i+1]) 
+      push()
+      translate(855, 0)
+       rect(35, 0, 10, height) //stick
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
+
+       push()
+       translate(40, 125)
+       drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) //right leaf
+       pop()
+
+       pop()
+    }
+
 
 ///Drawing leaf ////
 function drawleaf(height, width){
@@ -96,10 +121,8 @@ function drawleaf(height, width){
   let leafY = height/21
 
 fill(103, 166, 88) /// green
-//stroke(166, 232, 151) ///light green
 strokeWeight(3)
 rect(leafX, leafY, 35, 35, 20); ///leaf
-noStroke()
 }
 
 /// Drawing flower ////
