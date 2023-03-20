@@ -22,14 +22,14 @@ let grid_points1 = [
   2.50 * width
 ]
  ////Debug going down///
-  if (debugView) {
-    stroke(255, 0, 0);
-    strokeWeight(height/100);
-    noFill();
-    for(let i=0; i<grid_points1.length; i++) {
-      drawflower(grid_points1, flower1_Y, flower1_Size, flower1_Size)
-    }   
-  } 
+  // if (debugView) {
+  //   stroke(255, 0, 0);
+  //   strokeWeight(height/100);
+  //   noFill();
+  //   for(let i=0; i<grid_points1.length; i++) {
+  //     drawflower(grid_points1, flower1_Y, flower1_Size, flower1_Size)
+  //   }   
+  // } 
 
   ///flowers going down////
   for(let i=0; i<grid_points1.length; i++) {
@@ -139,6 +139,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
     let lightorange = color(255, 175, 97)
     let lightred = color(255, 145, 138);
     let darkred = color(133, 23, 63);
+    let darkorange = color(145, 69, 15)
 
 	  //// actual flower ///////
 		  // flowerPetals
@@ -148,7 +149,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
 		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
 		  fill(lightorange); //colour orange
-		  stroke(145, 69, 15); //colour darker orange
+		  stroke(darkorange); //colour darker orange
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
 		  rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
