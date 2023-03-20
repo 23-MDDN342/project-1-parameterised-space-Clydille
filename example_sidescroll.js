@@ -62,6 +62,7 @@ let grid_points1 = [
   
     push()
     translate(height/3.5, width/10)
+    rect(35, 0, 10, height) //stick
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
     translate(height/1.8, 0)
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
@@ -139,6 +140,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
     let lightorange = color(255, 175, 97)
     let lightred = color(255, 145, 138);
     let darkred = color(133, 23, 63);
+
 
     push()
 	  //// actual flower ///////
