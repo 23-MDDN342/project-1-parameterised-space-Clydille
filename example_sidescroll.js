@@ -21,15 +21,6 @@ let grid_points1 = [
   1.50 * width,
   2.50 * width
 ]
- ////Debug going down///
-  // if (debugView) {
-  //   stroke(255, 0, 0);
-  //   strokeWeight(height/100);
-  //   noFill();
-  //   for(let i=0; i<grid_points1.length; i++) {
-  //     drawflower(grid_points1, flower1_Y, flower1_Size, flower1_Size)
-  //   }   
-  // } 
 
   ///flowers going down////
   for(let i=0; i<grid_points1.length; i++) {
@@ -76,6 +67,7 @@ let grid_points1 = [
       0.50 * width,
       -1 * height
     ]
+    
     /// LEFT VINE ///
     for(let i=0; i<grid_points3.length; i++) {
       let cur_x_pos = map(cur_frac, 0, 1, grid_points3[i], grid_points3[i+1]) 
@@ -144,12 +136,12 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 	  //// actual flower ///////
 		  // flowerPetals
 		  fill(lightred);
-		  stroke(darkred); //colour darker red
+		  stroke(darkred);
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
 		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
-		  fill(lightorange); //colour orange
-		  stroke(darkorange); //colour darker orange
+		  fill(lightorange); 
+		  stroke(darkorange);
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
 		  rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
