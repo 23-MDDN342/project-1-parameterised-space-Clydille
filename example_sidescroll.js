@@ -1,4 +1,4 @@
-function draw_one_frame(cur_frac, k) {
+function draw_one_frame(cur_frac) {
   
   noStroke();
   /// bg ///
@@ -55,14 +55,13 @@ let grid_points1 = [
     0.25 * width, 
     -0.50 * height
   ]
-
+  
   /// Flowers going up ////
   for(let i=0; i<grid_points2.length; i++) {
     let cur_x_pos = map(cur_frac, 0, 1, grid_points2[i], grid_points2[i+1]) 
-  
+
     push()
     translate(height/3.5, width/10)
-    rect(35, 0, 10, height) //stick
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
     translate(height/1.8, 0)
     drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
@@ -128,7 +127,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 }
 
 /// Drawing flower ////
-  function drawflower(height, width, cur_frac) {
+  function drawflower(height, width) {
 
     let flowerW = 55;
     let flowerH = 55; 
@@ -141,8 +140,6 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
     let lightred = color(255, 145, 138);
     let darkred = color(133, 23, 63);
 
-
-    push()
 	  //// actual flower ///////
 		  // flowerPetals
 		  fill(lightred);
@@ -160,8 +157,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 		  fill(249, 255, 87); //colour yellow
 		  stroke(255, 204, 0); //colour darker yellow
 		  ellipse(flowerX, flowerY + 55, elli_size); //middle
-		pop()
-	  
+
 	  }
 
 }
