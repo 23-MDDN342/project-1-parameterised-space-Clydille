@@ -126,7 +126,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 }
 
 /// Drawing flower ////
-  function drawflower(height, width) {
+  function drawflower(height, width, k) {
 
     let flowerW = 55;
     let flowerH = 55; 
