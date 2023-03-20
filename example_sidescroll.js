@@ -1,4 +1,4 @@
-function draw_one_frame(cur_frac) {
+function draw_one_frame(cur_frac, k) {
   
   noStroke();
   /// bg ///
@@ -97,12 +97,13 @@ let grid_points1 = [
           1.50 * width,
           2.5* width
         ]
-        
+ 
         /// RIGHT VINE ///
+      
     for(let i=0; i<grid_points4.length; i++) {
       let cur_x_pos = map(cur_frac, 0, 1, grid_points4[i], grid_points4[i+1]) 
       push()
-      translate(855, 0)
+       translate(width-100, 0)
        rect(35, 0, 10, height) //stick
        drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
 
@@ -126,7 +127,7 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
 }
 
 /// Drawing flower ////
-  function drawflower(height, width, k) {
+  function drawflower(height, width, cur_frac) {
 
     let flowerW = 55;
     let flowerH = 55; 
@@ -134,17 +135,20 @@ rect(leafX, leafY, 35, 35, 20); ///leaf
     let lineWeight = 4;
     let flowerX = 0.55*width;
     let flowerY = 0.55*height;
-  
-  
+    ///COLOR///
+    let lightorange = color(255, 175, 97)
+    let lightred = color(255, 145, 138);
+    let darkred = color(133, 23, 63);
+
     push()
 	  //// actual flower ///////
 		  // flowerPetals
-		  fill(255, 145, 138); //colour red
-		  stroke(133, 23, 63); //colour darker red
+		  fill(lightred);
+		  stroke(darkred); //colour darker red
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
 		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
-		  fill(255, 175, 97); //colour orange
+		  fill(lightorange); //colour orange
 		  stroke(145, 69, 15); //colour darker orange
 		  strokeWeight(lineWeight);
 		  rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
