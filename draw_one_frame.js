@@ -1,111 +1,199 @@
-let x=300;
-let y=300;
-let a=100;
-let b=100;
-//Flower
-let flowerW = 55;
-let flowerH = 55;
-let elli_size = 40;
-let lineWeight = 4;
-let flowerX = 75;
-let flowerY = 20;
-
 function draw_one_frame(cur_frac) {
-	//background(255);
-    x+=2;
-    y+=2;
-	a-=2;
-	b-=2;
-
-translate(width/2, height/2);
-
-	for(let i=0;i<15;i++){
-		for(let k=0;k<20;k++){
-			rotate(PI / 12.0)
-	ellipse((x+i*20)%width,(y+k*20)%height,i+4,i+4)
-	push()
-	translate(a%100,b%100,x%300,y%300)
-	rotate(PI / 12.0)
-	drawflower(k,x);
-	pop()
+  
+	noStroke();
+	/// bg ///
+	fill(56, 17, 51); //color for now
+	rect(0, 0, width, height);
+  
+  ////// FLOWERS //////
+  
+	let flower1_Y = 0.55* height;
+	let flower1_Size = height;
+	let leafY = height/21
+	let halfway = 1 * width
+  
+  /// Flowers going down ////
+  let grid_points1 = [
+	-0.50 * height, 
+	0.25 * width,
+	0.50 * width,
+	halfway,
+	1.50 * width,
+	2.50 * width
+  ]
+  
+	///flowers going down////
+	for(let i=0; i<grid_points1.length; i++) {
+	  let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
 	
-		}
-	}
-	function drawflower(i,k) {
-
-
-	  //// actual flower ///////
-		  // flowerPetals
-		  fill(255, 145, 138); //colour red
-		  stroke(255, (k*0.4)%107, 18); //colour darker red
-		  strokeWeight(lineWeight);
-		  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
-		  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
-		  fill(255, 175, 97); //colour orange
-		  stroke(255, 156, 51); //colour darker orange
-		  strokeWeight(lineWeight);
-		  rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
-		  rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
-	  
-		  //the cruves in the petals
-		  stroke(255, 107, 18); //colour darker red
-		  curve(15, 45, 45, 50, 60, 61, 58, 58); // top_left
-		  curve(15, 45, 75, 72, 105, 105, 45, 55); // bottom_right
-		  stroke(255, 156, 51); //colour darker orange
-		  curve(15, 45, 75, 50, 50, 105, 40, 55); // bottom_left
-		  curve(75, 45, 105, 50, 60, 70, 25, 25); // top_right
-	  
-		  //middle part
-		  fill(249, 255, 87); //colour yellow
-		  stroke(255, 204, 0); //colour darker yellow
-		  ellipse(flowerX, flowerY + 55, elli_size); //middle
-		
-	  
-	  }
+	  //Flowers
+	  push()
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size)///first flower
+	  translate(height/1.8, 0)
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
+	  translate(height/1.8, 0)
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
+	  pop()
   }
-
-// function draw_one_frame() {
-//   //background(255);
-//   x+=2;
-//   y+=2;
-// 	a-=2;
-// 	b-=2;
-// 	strokeWeight(1);
-//   translate(width/2, height/2);
-//   for(let i=0;i<15;i++){
-// 	  for(let k=0;k<20;k++){
-// 		stroke(255,255,255);
-//     rotate(PI / 12.0);
-// 	  fill(255,255-i*10,255-k*10);
-//   	line(a%100,b%100,x%300,y%300);
-// 	  ellipse((x+i*20)%width,(y+k*20)%height,i+4,i+4);
-// 		drawtriangle((a-i*20)%width,(b-k*20)%height,k/8);
-// 		rect(x%width, y%height, k+10, k+10);
-// 		fill(0,i*10,255-k*10);
-// 		ellipse((x-i*20)%width,(y-k*20)%height,i+3,i+3);
-// 		rotate(PI / 24.0);
-// 		fill(255-(i+k)*5,(i+k)*7,i*20);
-// 		drawtriangle((a+i*20)%width,(b+k*20)%height,k/8);
-// 		rect(a%width, b%height, k+5, k+5);
-// 		drawflower(k,x);
-// 	  }
-//   }
-
-// }
-
-// function drawtriangle(x,y,r){
-// 	triangle(x, y, x+7*r, y-13.75*r, x+14*r, y);
-// }
-
-// function drawflower(i,k){
-// 		if(i%2==1){
-// 			fill(255,(k*0.4)%255,30);
-// 			stroke(k%255,255,0);
-// 			arc(0,0,150+i+150*sin(k*PI/24),150,0,PI / 40);
-// 		}
-// 		else{
-// 			fill(k%255,0,255);
-// 			stroke(0,(k*0.4)%255,255);
-// 			arc(0,0,(100+100*cos(k*PI/24))%255,50,0,PI / 20);
-// 		}
-// }
+  
+  
+  
+	/// Flowers going up ////
+	let grid_points2 = [
+	  2.50* width, 
+	  1.50 * width,
+	  1 * width,
+	  0.50 * width,
+	  0.25 * width, 
+	  -0.70 * height
+	]
+	
+	/// Flowers going up ////
+	for(let i=0; i<grid_points2.length; i++) {
+	  let cur_x_pos = map(cur_frac, 0, 1, grid_points2[i], grid_points2[i+1]) 
+  
+	  push()
+	  translate(height/3.5, width/10)
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
+	  translate(height/1.8, 0)
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
+	  pop()
+	}
+	  ////// VINES AND LEAF //////
+  
+	  /// leafs going up ////
+	  let grid_points3= [
+		2.5* width, 
+		1.50 * width,
+		0.50 * width,
+		-1 * height
+	  ]
+	  
+	  /// LEFT VINE ///
+	  for(let i=0; i<grid_points3.length; i++) {
+		let cur_x_pos = map(cur_frac, 0, 1, grid_points3[i], grid_points3[i+1]) 
+	  
+		noStroke()
+		 rect(35, 0, 10, height) //stick
+		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
+  
+		 push()
+		 translate(40, 125)
+		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) //right leaf
+		 pop()
+	   
+	  }
+  
+		  /// leafs going down ////
+		  let grid_points4= [
+			-1* height, 
+			0.50 * width,
+			1.50 * width,
+			2.5* width
+		  ]
+   
+		  /// RIGHT VINE ///
+		
+	  for(let i=0; i<grid_points4.length; i++) {
+		let cur_x_pos = map(cur_frac, 0, 1, grid_points4[i], grid_points4[i+1]) 
+		push()
+		 translate(width-100, 0)
+		 rect(35, 0, 10, height) //stick
+		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
+  
+		 push()
+		 translate(40, 125)
+		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) //right leaf
+		 pop()
+		 pop()
+	  }
+  
+  
+  ///Drawing leaf ////
+  function drawleaf(height, width){
+  
+	let leafX = width/29.5
+	let leafY = height/21
+  
+  fill(103, 166, 88) /// green
+  strokeWeight(3)
+  rect(leafX, leafY, 35, 35, 20); ///leaf
+  }
+  
+  /// Drawing flower ////
+	function drawflower(height, width) {
+  
+	  let flowerW = 55;
+	  let flowerH = 55; 
+	  let elli_size = 35;
+	  let lineWeight = 4;
+	  let flowerX = 0.55*width;
+	  let flowerY = 0.55*height;
+	  ///COLOR///
+	  let lightorange = color(255, 175, 97)
+	  let lightred = color(255, 145, 138);
+	  let darkred = color(133, 23, 63);
+	  let darkorange = color(145, 69, 15)
+  
+	  
+		//// actual flower ///////
+			// flowerPetals
+			fill(lightred);
+			stroke(darkred);
+			strokeWeight(lineWeight);
+			rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
+			rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
+			fill(lightorange); 
+			stroke(darkorange);
+			strokeWeight(lineWeight);
+			rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
+			rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
+		
+			//middle part
+			fill(249, 255, 87); //colour yellow
+			stroke(255, 204, 0); //colour darker yellow
+			ellipse(flowerX, flowerY + 55, elli_size); //middle
+  
+		}
+  
+  }
+  
+  /// Drawing flower ////
+	function drawflower2(height, width) {
+  
+	  let flowerW = 55;
+	  let flowerH = 55; 
+	  let elli_size = 35;
+	  let lineWeight = 4;
+	  let flowerX = 0.55*width;
+	  let flowerY = 0.55*height;
+	  ///COLOR///
+	  let lightorange = color(255, 175, 97)
+	  let lightred = color(255, 145, 138);
+	  let darkred = color(133, 23, 63);
+	  let darkorange = color(145, 69, 15)
+  
+		//// actual flower ///////
+			// flowerPetals
+			fill(lightorange);
+			stroke(darkorange);
+			strokeWeight(lineWeight);
+			rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
+			rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
+			fill(lightred); 
+			stroke(darkred);
+			strokeWeight(lineWeight);
+			rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
+			rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
+		
+			//middle part
+			fill(249, 255, 87); //colour yellow
+			stroke(255, 204, 0); //colour darker yellow
+			ellipse(flowerX, flowerY + 55, elli_size); //middle
+  
+		}
+  
+  
+  
+  
+  
