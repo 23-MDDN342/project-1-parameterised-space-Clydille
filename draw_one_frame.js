@@ -1,23 +1,44 @@
 function draw_one_frame(cur_frac) {
   
-	/// bg ///
+	/// BACKGROUND ///
 	noStroke()
 	fill(219, 161, 161)
 	rect(0,0, width, height)
+	
+	let noiseColor;
+	let moveXMap;
+	
+	let rectSize = width / 20
+	let spacingSize = width / 19
+	
+	for(let accross = 1; accross +1 < width /spacingSize; accross++ ){
+		for(let down = 1; down +1 < height /spacingSize; down++){		
+
+		noiseColor = getNoiseValue(spacingSize*accross,spacingSize*down, 1, "noiseColor",0,1, 1 )
+	
+			if(cur_frac > 0 && noiseColor < 1){
+				fill(247, 210, 230)
+				moveXMap = map(cur_frac,0.3, 2, spacingSize*accross, spacingSize*(accross+1))
+				rect(moveXMap,spacingSize*down,rectSize/2.9) 
+			}
+		}
+	}
+
+
+
 
   ////// FLOWERS //////
   
 	let flower1_Y = 0.55* height;
 	let flower1_Size = height;
 	let leafY = height/21
-	let halfway = 1 * width
   
   /// Flowers going down ////
   let grid_points1 = [
 	-0.50 * height, 
 	0.25 * width,
 	0.45 * width,
-	halfway
+	1 * width
   ]
   
 	///flowers going down////
@@ -25,22 +46,19 @@ function draw_one_frame(cur_frac) {
 	  let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
 	  //Flowers
 	  push() 
-	  drawflower3(cur_x_pos, flower1_Y/1.1, flower1_Size/0.5, flower1_Size) ///first flower shadow
+	  shadow(cur_x_pos, flower1_Y/1.1, flower1_Size/0.7, flower1_Size) ///first flower shadow
 	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size)///first flower
 	  translate(height/1.8, 0)
-	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
+	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// secound flower
 	  translate(height/1.8, 0)
+	  shadow(cur_x_pos, flower1_Y/0.9, flower1_Size/0.7, flower1_Size) ///third flower shadow
 	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
 	  pop()
 
   }
   
-  
-  
 	/// Flowers going up ////
 	let grid_points2 = [
-	  2.50* width, 
-	  1.50 * width,
 	  1 * width,
 	  0.50 * width,
 	  0.25 * width, 
@@ -53,8 +71,10 @@ function draw_one_frame(cur_frac) {
   
 	  push()
 	  translate(height/3.5, width/10)
+	  shadow2(cur_x_pos, flower1_Y/1.1, flower1_Size/0.7, flower1_Size) ///first flower shadow
 	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
 	  translate(height/1.8, 0)
+	  shadow2(cur_x_pos, flower1_Y/0.9, flower1_Size/0.7, flower1_Size) ///first flower shadow
 	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
 	  pop()
 	}
@@ -75,7 +95,6 @@ function draw_one_frame(cur_frac) {
 		noStroke()
 		 rect(35, 0, 10, height) //stick
 		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) ///left leaf
-  
 		 push()
 		 translate(40, 125)
 		 drawleaf(cur_x_pos*5, leafY, flower1_Size/60, flower1_Size/60) //right leaf
@@ -114,7 +133,7 @@ function draw_one_frame(cur_frac) {
 	let leafX = width/29.5
 	let leafY = height/21
   
-  fill(103, 166, 88) /// green
+  fill(112, 173, 71) /// green
   strokeWeight(3)
   rect(leafX, leafY, 35, 35, 20); ///leaf
   }
@@ -131,7 +150,6 @@ function draw_one_frame(cur_frac) {
 	  ///COLOR///
 	  let lightred = color(82, 13, 38);
 	  let darkred = color(133, 23, 63);
-	  let darkorange = color(145, 69, 15)
   
 		//// actual flower ///////
 			// flowerPetals
@@ -190,10 +208,34 @@ function draw_one_frame(cur_frac) {
   
 		}
 
-
+	/// Drawing flower ////
+	function shadow2(height, width) {
+	
+		let flowerW = 55;
+		let flowerH = 55; 
+		let lineWeight = 4;
+		let flowerX = 0.55*width;
+		let flowerY = 0.55*height;
+	
+		  //// actual flower ///////
+			  // flowerPetals
+			  fill(196, 57, 107);
+			  stroke(196, 57, 107);
+			  strokeWeight(lineWeight);
+			  rect(flowerX - 55, flowerY, flowerW, flowerH, 20); // top_leftpetal
+			  rect(flowerX, flowerY + 55, flowerW, flowerH, 20); // bottom_rightpetal
+			  fill(196, 57, 107); 
+			  stroke(196, 57, 107);
+			  strokeWeight(lineWeight);
+			  rect(flowerX - 55, flowerY + 55, flowerW, flowerH, 20); // bottom_leftpetal
+			  rect(flowerX, flowerY, flowerW, flowerH, 20); // top_rightpetal
+	
+	
+		  }
+	
   
 	/// Drawing flower ////
-	  function drawflower3(height, width) {
+	  function shadow(height, width) {
 	
 		let flowerW = 55;
 		let flowerH = 55; 
