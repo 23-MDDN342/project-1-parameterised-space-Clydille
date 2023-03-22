@@ -5,26 +5,14 @@ function draw_one_frame(cur_frac) {
 	fill(219, 161, 161)
 	rect(0,0, width, height)
 	
-	let noiseColor;
-	let moveXMap;
-	
-	let rectSize = width / 20
-	let spacingSize = width / 19
+	let rectSize = width / 10
+	let spacingSize = width / 9
 	
 	for(let accross = 1; accross +1 < width /spacingSize; accross++ ){
 		for(let down = 1; down +1 < height /spacingSize; down++){		
-
-		noiseColor = getNoiseValue(spacingSize*accross,spacingSize*down, 1, "noiseColor",0,1, 1 )
-	
-			if(cur_frac > 0 && noiseColor < 1){
-				fill(247, 210, 230)
-				moveXMap = map(cur_frac,0.3, 2, spacingSize*accross, spacingSize*(accross+1))
-				rect(moveXMap,spacingSize*down,rectSize/2.9) 
-			}
-		}
+			fill(247, 210, 230)
+			rect(spacingSize*accross,spacingSize*down,rectSize/2.9) }
 	}
-
-
 
 
   ////// FLOWERS //////
@@ -46,12 +34,13 @@ function draw_one_frame(cur_frac) {
 	  let cur_x_pos = map(cur_frac, 0, 1, grid_points1[i], grid_points1[i+1]) 
 	  //Flowers
 	  push() 
-	  shadow(cur_x_pos, flower1_Y/1.1, flower1_Size/0.7, flower1_Size) ///first flower shadow
+	  shadow(cur_x_pos+10, flower1_Y-15, flower1_Size, flower1_Size) ///first flower shadow
 	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size)///first flower
 	  translate(height/1.8, 0)
-	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// secound flower
+	  shadow(cur_x_pos+15, flower1_Y, flower1_Size, flower1_Size) ///second flower shadow
+	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
 	  translate(height/1.8, 0)
-	  shadow(cur_x_pos, flower1_Y/0.9, flower1_Size/0.7, flower1_Size) ///third flower shadow
+	  shadow(cur_x_pos+10, flower1_Y+15, flower1_Size/0.7, flower1_Size) ///third flower shadow
 	  drawflower2(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// third flower
 	  pop()
 
@@ -71,11 +60,11 @@ function draw_one_frame(cur_frac) {
   
 	  push()
 	  translate(height/3.5, width/10)
-	  shadow2(cur_x_pos, flower1_Y/1.1, flower1_Size/0.7, flower1_Size) ///first flower shadow
-	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
+	  shadow2(cur_x_pos+10, flower1_Y-15, flower1_Size/0.7, flower1_Size) ///first flower shadow
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// first flower
 	  translate(height/1.8, 0)
-	  shadow2(cur_x_pos, flower1_Y/0.9, flower1_Size/0.7, flower1_Size) ///first flower shadow
-	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// forth flower
+	  shadow2(cur_x_pos+10, flower1_Y+15, flower1_Size/0.7, flower1_Size) /// second flower shadow
+	  drawflower(cur_x_pos, flower1_Y, flower1_Size, flower1_Size) /// second flower
 	  pop()
 	}
 	  ////// VINES AND LEAF //////
@@ -150,7 +139,15 @@ function draw_one_frame(cur_frac) {
 	  ///COLOR///
 	  let lightred = color(82, 13, 38);
 	  let darkred = color(133, 23, 63);
-  
+	// 	let flowerW = height/10;
+	// 	let flowerH = height/10; 
+	// 	let lineWeight = height/135;
+	// 	let flowerX = 0.55*width;
+	// 	let flowerY = 0.55*height;
+	//   let five =height/10
+	//   let roundedge = height/27
+	//   if(roundedge < 0.0){
+	// 	roundedge = 0;
 		//// actual flower ///////
 			// flowerPetals
 			fill(darkred);
@@ -234,7 +231,7 @@ function draw_one_frame(cur_frac) {
 		  }
 	
   
-	/// Drawing flower ////
+	/// Drawing shadow ////
 	  function shadow(height, width) {
 	
 		let flowerW = 55;
